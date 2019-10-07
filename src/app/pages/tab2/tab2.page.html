@@ -1,0 +1,45 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>
+      Historial
+    </ion-title>
+
+
+<ion-buttons slot="end">
+  <ion-button  (click)="enviarCorreo()" color="primari"><ion-icon name="send" slot="icon-only" ></ion-icon></ion-button>
+</ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-list>
+ 
+
+  <ion-item detail *ngFor="let registro of registros" >
+        <!-- ponemos FAB -->
+        <div class="registro-more">
+            <ion-button fill="clear" (click)="lanzarMenu(registro)" slot="start">
+              <ion-icon slot="icon-only" name="more"></ion-icon>
+    
+            </ion-button>
+          </div>
+    <ion-icon color="primary" slot="start" [name]="registro.icon"></ion-icon>
+    <ion-label (click)="abrirRegistro(registro)">
+      <h2>{{registro.texto}}</h2>
+      <p>{{registro.created | date: 'medium'}}</p>
+    </ion-label>
+    
+  </ion-item>
+</ion-list>
+
+
+<ion-slides [options]="sliderOpt" *ngIf="registros.length===0">
+  <ion-slide >
+    <ion-label>No hay registros</ion-label>
+      
+  </ion-slide>
+</ion-slides>
+
+</ion-content>
